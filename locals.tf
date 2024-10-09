@@ -1,15 +1,9 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.0"
-    }
+locals {
+  common_tags = {
+    company     = var.company
+    project     = "${var.company}-${var.project}"
+    environment = var.environment
   }
-}
 
-####################################################
-# Configure the AWS Provider
-####################################################
-provider "aws" {
-  region = var.aws_region
+  naming_prefix = "${var.naming_prefix}-${var.environment}"
 }
